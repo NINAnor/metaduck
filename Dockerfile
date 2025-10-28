@@ -1,8 +1,9 @@
-FROM eclipse-temurin:21-jre-jammy
+FROM eclipse-temurin:21-jre-noble
 
-RUN apk add -U bash fontconfig curl font-noto font-noto-arabic font-noto-hebrew font-noto-cjk java-cacerts && \
-    apk upgrade && \
-    rm -rf /var/cache/apk/* && \
+RUN --mount=target=/var/lib/apt/lists,type=cache,sharing=locked \
+    --mount=target=/var/cache/apt,type=cache,sharing=locked \
+    apt-get update && apt-get install --no-install-recommends -yq \
+    ca-certificates-java && \
     mkdir -p /app/certs && \
     curl https://truststore.pki.rds.amazonaws.com/global/global-bundle.pem -o /app/certs/rds-combined-ca-bundle.pem  && \
     /opt/java/openjdk/bin/keytool -noprompt -import -trustcacerts -alias aws-rds -file /app/certs/rds-combined-ca-bundle.pem -keystore /etc/ssl/certs/java/cacerts -keypass changeit -storepass changeit && \
