@@ -11,7 +11,6 @@ RUN apk add -U bash fontconfig curl font-noto font-noto-arabic font-noto-hebrew 
 
 ENV FC_LANG=en-US LC_CTYPE=en_US.UTF-8
 ENV MB_PLUGINS_DIR=/home/plugins/
-ENV MB_DB_FILE=/db/metabase.db
 
 ADD https://downloads.metabase.com/v0.56.11.x/metabase.jar /home
 ADD --chmod=744 https://github.com/motherduckdb/metabase_duckdb_driver/releases/download/1.4.1.0/duckdb.metabase-driver.jar /home/plugins/
