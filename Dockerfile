@@ -14,7 +14,7 @@ ENV FC_LANG=en-US LC_CTYPE=en_US.UTF-8
 ENV MB_PLUGINS_DIR=/home/plugins/
 
 ADD https://downloads.metabase.com/v0.56.11.x/metabase.jar /home
-ADD --chmod=744 https://github.com/motherduckdb/metabase_duckdb_driver/releases/download/1.4.1.0/duckdb.metabase-driver.jar /home/plugins/
+ADD --chmod=744 https://github.com/motherduckdb/metabase_duckdb_driver/releases/download/1.4.3.1/duckdb.metabase-driver.jar /home/plugins/
 
 COPY entrypoint.sh /home/entrypoint.sh
 ENTRYPOINT ["/home/entrypoint.sh"]
